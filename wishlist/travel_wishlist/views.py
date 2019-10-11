@@ -8,12 +8,12 @@ def place_list(request):
 
     if request.method == 'POST':
         form = NewPlaceForm(request.POST)
-        place = form.save()
-        if form.is_valid():
-            place.save()
+        place = form.save() #creating new place from form
+        if form.is_valid(): #checks form is valid, right fields
+            place.save() #saves to database
             return redirect('place_list')
 
-
+    #if not post or form is not valid renders page with form to add new place
     places = Place.objects.filter(visited=False).order_by('name')
     new_place_form = NewPlaceForm()
     return render(request, 'travel_wishlist/wishlist.html', { 'places': places, 'new_place_form': new_place_form })

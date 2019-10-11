@@ -27,7 +27,7 @@ class TestWishList(TestCase):
         self.assertContains(response, 'New York')
         self.assertNotContains(response, 'San Francisco')
         self.assertNotContains(response, 'Moab')
-
+#tests places are displayed with test data, only not visited
 
 class TestNotVisited(TestCase):
 
@@ -37,6 +37,7 @@ class TestNotVisited(TestCase):
         self.assertTemplateUsed(response, 'travel_wishlist/visited.html')
         self.assertFalse(response.context['visited'])
         self.assertContains(response, 'You have not visited any places yet')
+#tests that displays you have not visited any places on visited tab with no data
 
 class TestOnlyVisited(TestCase):
 
@@ -51,4 +52,4 @@ class TestOnlyVisited(TestCase):
         self.assertContains(response, 'San Francisco')
         self.assertNotContains(response, 'Jamaica')
         self.assertNotContains(response, 'Colorado')
-
+    #tests that only visited places are shown on visited tab
